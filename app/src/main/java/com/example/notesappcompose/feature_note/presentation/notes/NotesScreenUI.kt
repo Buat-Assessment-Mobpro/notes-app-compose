@@ -101,17 +101,11 @@ fun ContentPartScaffold(
                 style = MaterialTheme.typography.bodyMedium
             )
 
-            Row {
-                IconButton(
-                    onClick = { viewModel.onEvent(NotesEvent.ToggleOrderSection) }
-                ) {
-                    Icon(imageVector = Icons.Default.Sort, contentDescription = "Sort")
-                }
-                IconButton(
-                    onClick = { /* onClick handler for Info icon */ }
-                ) {
-                    Icon(imageVector = Icons.Default.Info, contentDescription = "About")
-                }
+            IconButton(
+                onClick = { viewModel.onEvent(NotesEvent.ToggleOrderSection) }
+            ) {
+                Icon(imageVector = Icons.Default.Sort, contentDescription = "Sort")
+                Icon(imageVector = Icons.Default.Info, contentDescription = "About")
             }
 
         }
