@@ -1,5 +1,15 @@
 <resources>
     <string name="app_name">List Note</string>
     <string name="desc">Descending</string>
+    <string name="hapus">Hapus Note</string>
+    <string name="deskripsi_hapus">Apakah Anda yakin ingin menghapus catatan ini?</string>
+    <string name="batal">Batal</string>
+    <string name="tentang_aplikasi">Tentang Aplikasi</string>
+    <string name="copyright">Hitung BMI merupakan sebuah aplikasi Android untuk menghitung body mass index (BMI) sehingga seseorang dapat mengetahui apakah berat badannya ideal, gemuk atau kurus.\n\nAplikasi ini dibuat untuk kelas Mobpro 1.\n\nCopyright 2021 – 2024 Muhammad Raihan Fahrifi.\nAll rights reserved.</string>
+    <string name="kembali">Kembali</string>
+    <string name="isi_deskripsi_aplikasi">Aplikasi List Note adalah sebuah aplikasi sederhana yang memungkinkan pengguna untuk membuat, mengedit, dan mengatur catatan mereka dengan mudah. Dengan antarmuka yang ramah pengguna dan fitur-fitur yang intuitif, aplikasi ini dirancang untuk membantu pengguna dalam mengelola dan menyusun ide, tugas, dan informasi penting lainnya dengan cepat dan efisien.</string>
+    <string name="isi_deskripsi_about">List Note adalah hasil dari kerja Muhammad Raihan Fahrifi. Kami selalu berusaha untuk meningkatkan pengalaman pengguna dan menerima umpan balik dari pengguna kami untuk terus mengembangkan aplikasi ini menjadi lebih baik.</string>
+    <string name="deskripsi_aplikasi">Deskripsi Aplikasi</string>
+    <string name="about_aplikasi">About Aplikasi</string>
 
 </resources>

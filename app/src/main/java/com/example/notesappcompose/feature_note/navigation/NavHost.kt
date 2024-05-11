@@ -9,6 +9,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.example.notesappcompose.ui.screen.AboutScreen
 import com.example.notesappcompose.ui.screen.AddEditScreenUI
 import com.example.notesappcompose.ui.screen.NotesScreen
 
@@ -22,6 +23,11 @@ fun AppNavHost() {
         ) {
             composable(route = NavScreen.NotesScreen.route) {
                 NotesScreen(navController = navController, LocalContext.current)
+
+            }
+
+            composable(route = NavScreen.AboutScreen.route) {
+                AboutScreen(navController = navController, LocalContext.current)
 
             }
 

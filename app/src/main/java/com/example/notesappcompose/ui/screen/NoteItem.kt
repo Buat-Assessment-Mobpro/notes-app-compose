@@ -27,11 +27,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.notesappcompose.feature_note.domain.model.Note
+import com.example.notesappcompose.R
 
 @Composable
 fun NoteItemUI(
@@ -42,22 +43,19 @@ fun NoteItemUI(
 ) {
     var showDeleteDialog by remember { mutableStateOf(false) }
 
-    // Function to show the delete confirmation dialog
     fun showDeleteConfirmationDialog() {
         showDeleteDialog = true
     }
 
-    // Function to dismiss the delete confirmation dialog
     fun dismissDeleteConfirmationDialog() {
         showDeleteDialog = false
     }
 
-    // AlertDialog for delete confirmation
     if (showDeleteDialog) {
         AlertDialog(
             onDismissRequest = { dismissDeleteConfirmationDialog() },
-            title = { Text(text = "Delete Note") },
-            text = { Text(text = "Are you sure you want to delete this note?") },
+            title = { Text(text = stringResource(id = R.string.hapus)) },
+            text = { Text(text = stringResource(id = R.string.deskripsi_hapus)) },
             confirmButton = {
                 Button(
                     onClick = {
@@ -65,7 +63,7 @@ fun NoteItemUI(
                         dismissDeleteConfirmationDialog()
                     }
                 ) {
-                    Text(text = "Delete")
+                    Text(text = stringResource(id = R.string.hapus))
                 }
             },
             dismissButton = {
@@ -74,7 +72,7 @@ fun NoteItemUI(
                         dismissDeleteConfirmationDialog()
                     }
                 ) {
-                    Text(text = "Cancel")
+                    Text(text = stringResource(id = R.string.batal))
                 }
             }
         )
