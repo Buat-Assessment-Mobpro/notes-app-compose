@@ -1,4 +1,4 @@
-package com.example.notesappcompose.feature_note.presentation.notes.components
+package com.example.notesappcompose.ui.screen
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -46,7 +46,6 @@ fun OrderSection(
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        //Making second Row
         Row(modifier = Modifier.fillMaxWidth()) {
             DefaultRadioButton(
                 text = "Ascending",

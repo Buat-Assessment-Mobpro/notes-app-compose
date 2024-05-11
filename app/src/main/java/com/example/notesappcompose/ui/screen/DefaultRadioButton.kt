@@ -1,4 +1,4 @@
-package com.example.notesappcompose.feature_note.presentation.notes.components
+package com.example.notesappcompose.ui.screen
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Notesappcompose</string>
-    <string name="nama_aplikasi">List Note</string>
+    <string name="app_name">List Note</string>
+    <string name="desc">Descending</string>
 
 </resources>

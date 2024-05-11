@@ -1,4 +1,4 @@
-package com.example.notesappcompose.feature_note.presentation.notes.components
+package com.example.notesappcompose.ui.screen
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -13,12 +13,18 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Share
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
@@ -34,13 +40,52 @@ fun NoteItemUI(
     onDeleteClicked: () -> Unit,
     onShareClicked: (String) -> Unit
 ) {
+    var showDeleteDialog by remember { mutableStateOf(false) }
+
+    // Function to show the delete confirmation dialog
+    fun showDeleteConfirmationDialog() {
+        showDeleteDialog = true
+    }
+
+    // Function to dismiss the delete confirmation dialog
+    fun dismissDeleteConfirmationDialog() {
+        showDeleteDialog = false
+    }
+
+    // AlertDialog for delete confirmation
+    if (showDeleteDialog) {
+        AlertDialog(
+            onDismissRequest = { dismissDeleteConfirmationDialog() },
+            title = { Text(text = "Delete Note") },
+            text = { Text(text = "Are you sure you want to delete this note?") },
+            confirmButton = {
+                Button(
+                    onClick = {
+                        onDeleteClicked()
+                        dismissDeleteConfirmationDialog()
+                    }
+                ) {
+                    Text(text = "Delete")
+                }
+            },
+            dismissButton = {
+                Button(
+                    onClick = {
+                        dismissDeleteConfirmationDialog()
+                    }
+                ) {
+                    Text(text = "Cancel")
+                }
+            }
+        )
+    }
+
     Card(modifier = modifier) {
         Box(
             modifier = Modifier
                 .fillMaxSize()
                 .background(Color(note.color))
         ) {
-            // Title and Content Section
             Box(
                 modifier = Modifier
                     .fillMaxSize()
@@ -61,12 +106,11 @@ fun NoteItemUI(
                     Text(
                         text = note.content,
                         style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.background,
+                        color = MaterialTheme.colorScheme.tertiary,
                         maxLines = 10,
                         overflow = TextOverflow.Ellipsis
                     )
 
-                    // Share and Delete Icons
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
@@ -84,7 +128,7 @@ fun NoteItemUI(
                         }
 
                         IconButton(
-                            onClick = onDeleteClicked,
+                            onClick = { showDeleteConfirmationDialog() },
                         ) {
                             Icon(
                                 imageVector = Icons.Default.Delete,
@@ -97,21 +141,4 @@ fun NoteItemUI(
             }
         }
     }
-}
-
-
-@Preview(showBackground = true)
-@Composable
-fun NoteItemUIPreview() {
-    NoteItemUI(
-        note = Note(
-            "Morning Task",
-            "This is a sample Note",
-            1234,
-            1
-        ),
-        modifier = Modifier.padding(16.dp),
-        onDeleteClicked = {},
-        onShareClicked = {}
-    )
 }

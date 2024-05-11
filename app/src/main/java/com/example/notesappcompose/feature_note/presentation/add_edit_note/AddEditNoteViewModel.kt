@@ -18,14 +18,13 @@ import javax.inject.Inject
 @HiltViewModel
 class AddEditNoteViewModel @Inject constructor(
     private val noteUseCases: NoteUseCases,
-    savedStateHandle: SavedStateHandle //contains the nav arguments
+    savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
-    //exposing all the states required
-    private val _noteTitle = mutableStateOf(NoteTextFieldState(hint = "Enter title"))
+    private val _noteTitle = mutableStateOf(NoteTextFieldState(hint = "Masukkan judul"))
     val noteTitle: State<NoteTextFieldState> = _noteTitle
 
-    private val _noteContent = mutableStateOf(NoteTextFieldState(hint = "Enter some content"))
+    private val _noteContent = mutableStateOf(NoteTextFieldState(hint = "Masukkan beberapa konten"))
     val noteContent: State<NoteTextFieldState> = _noteContent
 
     private val _noteColor = mutableStateOf(Note.noteColors.random().toArgb())
@@ -61,12 +60,10 @@ class AddEditNoteViewModel @Inject constructor(
 
     fun onEvent(event: AddEditNoteEvent) {
         when (event) {
-            //if title is entered, then only update it
             is AddEditNoteEvent.EnteredTitle -> {
                 _noteTitle.value = noteTitle.value.copy(text = event.newTitle)
             }
 
-            //when we are not focused on the text-field and the text is empty, we will show the hint
             is AddEditNoteEvent.ChangeTitleFocus -> {
                 _noteTitle.value = noteTitle.value.copy(
                     isHintVisible = !event.focusState.isFocused && noteTitle.value.text.isBlank()
@@ -83,12 +80,12 @@ class AddEditNoteViewModel @Inject constructor(
                 )
             }
 
+
             is AddEditNoteEvent.ChangeColor -> {
                 _noteColor.value = event.color
             }
 
             is AddEditNoteEvent.SaveNote -> {
-                //call addNote Usecase
                 viewModelScope.launch {
                     try {
                         noteUseCases.addNote(
@@ -103,7 +100,7 @@ class AddEditNoteViewModel @Inject constructor(
                         _eventFlow.emit(UiEvent.SaveNote)
                     } catch (e: InvalidNoteException) {
                         _eventFlow.emit(
-                            UiEvent.ShowSnackbar(message = e.message ?: "Couldn't Save Note")
+                            UiEvent.ShowSnackbar(message = e.message ?: "Tidak Dapat Menyimpan Catatan")
                         )
                     }
                 }
